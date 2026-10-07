@@ -1,0 +1,66 @@
+/* PodcastApp public pages (Terms, Privacy, Support). Plain HTML, system fonts, light and dark like the app. */
+:root {
+  --bg: #f6f6f8;
+  --surface: #ffffff;
+  --fg: #1c1c1e;
+  --secondary: #5d5d63;
+  --rule: #e2e2e7;
+  --accent: #007aff;
+  --accent-soft: #e8f1ff;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --surface: #1c1c1e;
+    --fg: #f2f2f7;
+    --secondary: #a1a1a8;
+    --rule: #38383d;
+    --accent: #0a84ff;
+    --accent-soft: #0b2a4d;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+
+.page { max-width: 42rem; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+
+nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; padding-block: 8px; font-size: 15px; }
+nav .name { font-weight: 700; color: var(--fg); text-decoration: none; margin-right: auto; display: flex; align-items: center; gap: 8px; }
+nav .name svg { width: 24px; height: 24px; }
+nav a:not(.name) { text-decoration: none; }
+nav a[aria-current="page"] { color: var(--fg); font-weight: 600; }
+
+header { display: flex; flex-direction: column; gap: 6px; }
+h1 { font-size: 34px; line-height: 1.15; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.lede { font-size: 19px; color: var(--secondary); margin: 0; }
+.meta { font-size: 13px; color: var(--secondary); margin: 0; text-transform: uppercase; letter-spacing: 0.06em; }
+
+section { background: var(--surface); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+h2 { font-size: 20px; line-height: 1.25; margin: 0; text-wrap: balance; }
+p, ul { margin: 0; }
+ul { padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
+li::marker { color: var(--secondary); }
+
+dl { margin: 0; display: grid; grid-template-columns: minmax(8rem, 12rem) 1fr; gap: 10px 16px; }
+dt { font-weight: 600; }
+dd { margin: 0; color: var(--secondary); min-width: 0; }
+@media (max-width: 34rem) { dl { grid-template-columns: 1fr; gap: 2px; } dd { margin-bottom: 10px; } }
+
+.callout { background: var(--accent-soft); border-radius: 14px; padding: 16px 20px; }
+.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.steps li { counter-increment: step; position: relative; padding-left: 36px; }
+.steps li::before { content: counter(step); position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; display: grid; place-items: center; }
+
+footer { font-size: 13px; color: var(--secondary); border-top: 1px solid var(--rule); padding-top: 16px; }
